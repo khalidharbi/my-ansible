@@ -1,4 +1,9 @@
+[web_servers]
 rocky1
-rocky2
-rocky3
 ubuntu
+
+[db_servers]
+rocky2
+
+[file_servers]
+rocky3
