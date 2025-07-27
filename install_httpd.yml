@@ -7,14 +7,33 @@
   - name: update repo index
     ansible.builtin.dnf:
       update_cache: yes 
+    when: ansible_distribution == "Rocky"
 
   - name: install httpd package
     ansible.builtin.dnf:
       name: httpd
       state: latest
+    when: ansible_distribution == "Rocky"
 
   - name: add php support for httpd
     ansible.builtin.dnf:
-      name: php-fpm 
+      name: php
       state: latest
-      
+    when: ansible_distribution == "Rocky"
+
+  - name: update repo index                   
+    ansible.builtin.apt:
+     update_cache: yes 
+    when: ansible_distribution == "Ubuntu"
+                                           
+  - name: install apache2 package
+    ansible.builtin.apt:
+      name: apache2 
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+                                           
+  - name: add php support for apache2 
+    ansible.builtin.apt:
+      name: libapache2-mod-php 
+      state: latest
+    when: ansible_distribution == "Ubuntu"
