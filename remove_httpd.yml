@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: remove httpd package
+    ansible.builtin.dnf:
+      name: httpd
+      state: absent 
+
+  - name: rmeove php support for httpd
+    ansible.builtin.dnf:
+      name: php-fpm 
+      state: absent 
+      
